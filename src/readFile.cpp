@@ -95,6 +95,7 @@ void searchAndRemoveElements(Tree **t, Record r){
 			number = stof(numberText);
 
 			r.key = number;
+			// cout << "Número a ser removido: " << r.key << endl;
 			removeTree(t, r);
 		}
 

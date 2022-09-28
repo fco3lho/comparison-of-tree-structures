@@ -25,9 +25,4 @@ int isInTree(Tree *t, Record r);
 void removeTree(Tree **t, Record r);
 void antecessor(Tree **t, Tree *aux);
 
-void preordem(Tree *t);
-void central(Tree *t);
-void posordem(Tree *t);
-void widthPath(Tree *t);
-
 #endif
