@@ -1,28 +1,28 @@
-#ifndef TREE_HPP 
-#define TREE_HPP
+#ifndef BINARYTREE_HPP 
+#define BINARYTREE_HPP
 
 #include <iostream>
 
-typedef struct Record Record;
-typedef struct Tree Tree;
+typedef struct Record_binary_tree Record_binary_tree;
+typedef struct binary_Tree binary_Tree;
 
-struct Record{
+struct Record_binary_tree{
 	float key;
 	float value;
 };
 
-struct Tree{
-	Record reg;
-	Tree *esq, *dir;
+struct binary_Tree{
+	Record_binary_tree reg;
+	binary_Tree *esq, *dir;
 };
 
-Tree* CreateTree();
-bool TVazia(Tree **t);
-void insertTree(Tree **t, Record r);
-void pesquisa(Tree **t, Tree **aux, Record r);
-int isInTree(Tree *t, Record r);
+binary_Tree* CreateTree_binary();
+bool TVazia_binary(binary_Tree **t);
+void insertTree_binary(binary_Tree **t, Record_binary_tree r);
+void pesquisa_binary(binary_Tree **t, binary_Tree **aux, Record_binary_tree r);
+int isInTree_binary(binary_Tree *t, Record_binary_tree r);
 
-void removeTree(Tree **t, Record r);
-void antecessor(Tree **t, Tree *aux);
+void removeTree_binary(binary_Tree **t, Record_binary_tree r);
+void antecessor_binary(binary_Tree **t, binary_Tree *aux);
 
 #endif

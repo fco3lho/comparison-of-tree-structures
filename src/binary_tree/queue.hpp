@@ -1,5 +1,5 @@
-#ifndef FILA_HPP 
-#define FILA_HPP
+#ifndef QUEUE_HPP 
+#define QUEUE_HPP
 
 #include <iostream>
 #include "binaryTree.hpp"
@@ -11,7 +11,7 @@ typedef struct Block Block;
 typedef struct Fila Fila;
 
 struct Item{
-	Tree *p;
+	binary_Tree *p;
 };
 
 struct Block{

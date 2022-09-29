@@ -1,48 +1,18 @@
-#include "readFile.hpp"
+#include "binary_tree_functions.hpp"
 
 /*
 Nesta função é feita a busca dos elementos no arquivo de texto e inseridos na árvore binária 
 onde, no loop feito para a inserção dos elementos é calculado o tempo de inserção, ou seja, 
 é calculado o tempo necessário para montar a estrutura da árvore em memória.
 */
-void insertElements(Tree **t, Record r){
+void insertElements_binary_tree(binary_Tree **t, Record_binary_tree r, string textFile){
 	clock_t start, end;
 
 	ifstream file;
 	string numberText;
 	float number;
 
-	int option = -1, cancel = -1;
-
-	cout << endl << "Para selecionar o arquivo com 500 números aleatórios, digite 1." << endl;
-	cout << "Para selecionar o arquivo com 5000 números aleatórios, digite 2." << endl;
-	cout << "Para selecionar o arquivo com 50000 números aleatórios, digite 3." << endl;
-	cout << "Para selecionar o arquivo com 500000 números aleatórios, digite 4." << endl << endl;
-
-	while(cancel != 0){
-		cout << "Opção: ";
-		cin >> option;
-
-		if(option == 1){
-			file.open("text_files/randomNumbers_500.txt");
-			cancel = 0;
-		}
-		else if(option == 2){
-			file.open("text_files/randomNumbers_5000.txt");
-			cancel = 0;
-		}
-		else if(option == 3){
-			file.open("text_files/randomNumbers_50000.txt");
-			cancel = 0;
-		}
-		else if(option == 4){
-			file.open("text_files/randomNumbers_500000.txt");
-			cancel = 0;
-		}
-		else{
-			cout << "Opção inválida, digite novamente." << endl;
-		}
-	}
+	file.open(textFile);
 
 	if(file.is_open()){
 
@@ -54,13 +24,13 @@ void insertElements(Tree **t, Record r){
 
 			r.key = number;
 			r.value = 1;
-			insertTree(t, r);
+			insertTree_binary(t, r);
 			// cout << number << endl;
 		}
 
 		end = clock();
 		double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    	cout << endl << "Tempo de execução da inserção: " << fixed << time_taken << " segundos." << endl;
+    	cout << endl << "Tempo de execução da inserção da árvore binária: " << fixed << time_taken << " segundos." << endl;
 
 		file.close();
 	}
@@ -76,8 +46,7 @@ void insertElements(Tree **t, Record r){
 Nesta função é feita a busca dos 10000 elementos do arquivo de texto na árvore binária a fim de
 remover os mesmos da árvore, se existirem.
 */
-
-void searchAndRemoveElements(Tree **t, Record r){
+void searchAndRemoveElements_binary_tree(binary_Tree **t, Record_binary_tree r){
 	clock_t start, end;
 
 	ifstream file;
@@ -95,12 +64,12 @@ void searchAndRemoveElements(Tree **t, Record r){
 
 			r.key = number;
 			// cout << "Número a ser removido: " << r.key << endl;
-			removeTree(t, r);
+			removeTree_binary(t, r);
 		}
 
 		end = clock();
 		double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    	cout << "Tempo de execução da remoção: " << fixed << time_taken << " segundos." << endl;
+    	cout << "Tempo de execução da remoção da árvore binária: " << fixed << time_taken << " segundos." << endl;
 
 		file.close();
 	}
