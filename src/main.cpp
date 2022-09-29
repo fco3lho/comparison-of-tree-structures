@@ -1,11 +1,12 @@
-#include "binaryTree.hpp"
-#include "queue.hpp"
-#include "readFile.hpp"
+#include "includes.hpp"
 
-int main(){
+void executeBinaryTree(){
 	Tree *raiz = CreateTree();
 	Record r;
-  
 	insertElements(&raiz, r);
 	searchAndRemoveElements(&raiz, r);
+}
+
+int main(){
+	executeBinaryTree();
 }

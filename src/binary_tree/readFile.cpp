@@ -12,7 +12,6 @@ void insertElements(Tree **t, Record r){
 	string numberText;
 	float number;
 
-	string file1 = "randomNumbers_500.txt", file2 = "randomNumbers_5000.txt", file3 = "randomNumbers_50000.txt", file4 = "randomNumbers_500000.txt";
 	int option = -1, cancel = -1;
 
 	cout << endl << "Para selecionar o arquivo com 500 números aleatórios, digite 1." << endl;
@@ -25,19 +24,19 @@ void insertElements(Tree **t, Record r){
 		cin >> option;
 
 		if(option == 1){
-			file.open("randomNumbers_500.txt");
+			file.open("text_files/randomNumbers_500.txt");
 			cancel = 0;
 		}
 		else if(option == 2){
-			file.open("randomNumbers_5000.txt");
+			file.open("text_files/randomNumbers_5000.txt");
 			cancel = 0;
 		}
 		else if(option == 3){
-			file.open("randomNumbers_50000.txt");
+			file.open("text_files/randomNumbers_50000.txt");
 			cancel = 0;
 		}
 		else if(option == 4){
-			file.open("randomNumbers_500000.txt");
+			file.open("text_files/randomNumbers_500000.txt");
 			cancel = 0;
 		}
 		else{
@@ -85,7 +84,7 @@ void searchAndRemoveElements(Tree **t, Record r){
 	string numberText;
 	float number;
 
-	file.open("numbersForSearch_10000.txt");
+	file.open("text_files/numbersForSearch_10000.txt");
 
 	if(file.is_open()){
 		start = clock();

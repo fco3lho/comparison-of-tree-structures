@@ -6,7 +6,8 @@ OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/
 TARGET   := app
 INCLUDE  := -Iinclude/
-SRC      :=  $(wildcard src/*.cpp)
+SRC      :=  $(wildcard src/*.cpp) \
+$(wildcard src/binary_tree/*.cpp)
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
@@ -18,7 +19,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(APP_DIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -o $(APP_DIR)/$(TARGET) $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $(APP_DIR)/$(TARGET) $(OBJECTS) $(LDFLAGS)
 
 .PHONY: all build clean debug release run
 
@@ -38,3 +39,5 @@ clean:
 
 run:
 	./$(BUILD)/$(TARGET)
+
+r: clean all run
