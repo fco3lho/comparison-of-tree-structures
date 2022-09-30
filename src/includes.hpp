@@ -8,3 +8,5 @@
 #include "avl_tree/avl_functions.hpp"
 
 //Red and Black Tree
+#include "red_black_tree/rb.hpp"
+#include "red_black_tree/rb_functions.hpp"

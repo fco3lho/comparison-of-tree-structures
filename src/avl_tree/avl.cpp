@@ -40,29 +40,6 @@ void insertTree_avl(avl_Tree **t, Record_avl_tree r){
   (*t)->weight = getMaxWeight_avl(getWeight_avl(&(*t)->left), getWeight_avl(&(*t)->right)) + 1;
 }
 
-
-void pesquisa_avl(avl_Tree **t, avl_Tree **aux, Record_avl_tree r){
-
-	if(*t == NULL){
-		cout << "[ERROR]: Node not found!" << endl;
-		return;
-	}
-
-	if((*t)->reg.key > r.key){ pesquisa_avl(&(*t)->left, aux, r); return;}
-	if((*t)->reg.key < r.key){ pesquisa_avl(&(*t)->right, aux, r); return;}
-
-	*aux = *t;
-}
-
-int isInTree_avl(avl_Tree *t, Record_avl_tree r){
-  
-  if(t == NULL){ 
-    return 0;
-  }
-  
-  return t->reg.key == r.key || isInTree_avl(t->left, r) || isInTree_avl(t->right, r);
-}
-
 void antecessor_avl(avl_Tree **t, avl_Tree *aux){ 
 
 	if ((*t)->right != NULL){ 
@@ -102,64 +79,35 @@ void rebalanceTree_avl(avl_Tree **t){
 void removeTree_avl(avl_Tree **t, avl_Tree **f, Record_avl_tree r){
 	avl_Tree *aux;
   	
-  	if (*t == NULL){ 
-  		// cout << "[ERROR]: Record not found!" << endl;
-    	return;
-  	}
+	if (*t == NULL){ 
+		// cout << "[ERROR]: Record not found!" << endl;
+  	return;
+	}
 
-  	if (r.key < (*t)->reg.key){ removeTree_avl(&(*t)->left, t, r); return;}
-  	if (r.key > (*t)->reg.key){ removeTree_avl(&(*t)->right, t, r); return;}
+	if (r.key < (*t)->reg.key){ removeTree_avl(&(*t)->left, t, r); return;}
+	if (r.key > (*t)->reg.key){ removeTree_avl(&(*t)->right, t, r); return;}
 
-  	if ((*t)->right == NULL){ 
-  		aux = *t;  
-  		*t = (*t)->left;
-    	delete(aux);
-    	rebalanceTree_avl(f);
-    	return;
-  	}
-
-  	if ((*t)->left != NULL){ 
-  		antecessor_avl(&(*t)->left, *t);
-  		rebalanceTree_avl(t);
-  		rebalanceTree_avl(f);
-  		return;
-  	}
-
-  	aux = *t;  
-  	*t = (*t)->right;
+	if ((*t)->right == NULL){ 
+		aux = *t;  
+		*t = (*t)->left;
   	delete(aux);
-  	rebalanceTree_avl(t);
-  	rebalanceTree_avl(f); 	
-  	
-}
+  	rebalanceTree_avl(f);
+  	return;
+	}
 
-void preordem_avl(avl_Tree *t)
-{
-  if(!(t == NULL)){
-    cout << t->reg.key << ":" << t->weight << "\t";
-    preordem_avl(t->left); 
-    preordem_avl(t->right); 
-  }
-}
+	if ((*t)->left != NULL){ 
+		antecessor_avl(&(*t)->left, *t);
+		rebalanceTree_avl(t);
+		rebalanceTree_avl(f);
+		return;
+	}
 
-void central_avl(avl_Tree *t)
-{
-  if(!(t == NULL)){
-    central_avl(t->left); 
-    cout << t->reg.key << "\t";
-    central_avl(t->right); 
-  }
+	aux = *t;  
+	*t = (*t)->right;
+	delete(aux);
+	rebalanceTree_avl(t);
+	rebalanceTree_avl(f); 	
 }
-
-void posordem_avl(avl_Tree *t)
-{
-  if(!(t == NULL)){
-    posordem_avl(t->left); 
-    posordem_avl(t->right); 
-    cout << t->reg.key << "\t";
-  }
-}
-
 
 int getWeight_avl(avl_Tree **t){
 	if(*t == NULL)

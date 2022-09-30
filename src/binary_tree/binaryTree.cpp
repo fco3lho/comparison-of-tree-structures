@@ -30,28 +30,6 @@ void insertTree_binary(binary_Tree **t, Record_binary_tree r){
   }
 }
 
-void pesquisa_binary(binary_Tree **t, binary_Tree **aux, Record_binary_tree r){
-
-  if(*t == NULL){
-    cout << "[ERROR]: Node not found!" << endl;
-    return;
-  }
-
-  if((*t)->reg.key > r.key){ pesquisa_binary(&(*t)->esq, aux, r); return;}
-  if((*t)->reg.key < r.key){ pesquisa_binary(&(*t)->dir, aux, r); return;}
-
-  *aux = *t;
-}
-
-int isInTree_binary(binary_Tree *t, Record_binary_tree r) {
-  
-  if(t == NULL){ 
-    return 0;
-  }
-  
-  return t->reg.key == r.key || isInTree_binary(t->esq, r) || isInTree_binary(t->dir, r);
-}
-
 void antecessor_binary(binary_Tree **t, binary_Tree *aux){ 
 
 	if ((*t)->dir != NULL){ 

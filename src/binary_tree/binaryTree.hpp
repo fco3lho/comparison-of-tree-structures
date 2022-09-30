@@ -19,9 +19,6 @@ struct binary_Tree{
 binary_Tree* CreateTree_binary();
 bool TVazia_binary(binary_Tree **t);
 void insertTree_binary(binary_Tree **t, Record_binary_tree r);
-void pesquisa_binary(binary_Tree **t, binary_Tree **aux, Record_binary_tree r);
-int isInTree_binary(binary_Tree *t, Record_binary_tree r);
-
 void removeTree_binary(binary_Tree **t, Record_binary_tree r);
 void antecessor_binary(binary_Tree **t, binary_Tree *aux);
 
