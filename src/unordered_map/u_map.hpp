@@ -7,7 +7,6 @@
 
 using namespace std;
 
-void insertElements_umap(unordered_map <float, float> u_map, string textFile);
-void searchElements_umap(unordered_map <float, float> u_map);
+void insertAndSearchElements_umap(unordered_map <string, float> u_map, string textFile);
 
 #endif

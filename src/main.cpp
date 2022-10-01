@@ -79,8 +79,7 @@ void execute_RB_Tree(string f){
 }
 
 void execute_umap(string f){
-	unordered_map <float, float> u_map;
+	unordered_map <string, float> u_map;
 
-	insertElements_umap(u_map, f);
-	searchElements_umap(u_map);
+	insertAndSearchElements_umap(u_map, f);
 }

@@ -1,12 +1,13 @@
 #include "u_map.hpp"
 
-void insertElements_umap(unordered_map <float, float> u_map, string textFile){
+void insertAndSearchElements_umap(unordered_map <string, float> u_map, string textFile){
 	clock_t start, end;
 
 	ifstream file;
-	string numberText;
-	float number, key;
+	string numberText, key;
+	float number;
 
+	//Insere
 	file.open(textFile);
 
 	if(file.is_open()){
@@ -14,8 +15,8 @@ void insertElements_umap(unordered_map <float, float> u_map, string textFile){
 
 		while(!file.eof()){
 			getline(file, numberText);
+			key = numberText;
 			number = stof(numberText);
-			key = number;
 
 			u_map.emplace(key, number);
 		}
@@ -30,15 +31,8 @@ void insertElements_umap(unordered_map <float, float> u_map, string textFile){
 		cout << "O arquivo não abriu." << endl;
 		return;
 	}
-}
 
-void searchElements_umap(unordered_map <float, float> u_map){
-	clock_t start, end;
-
-	ifstream file;
-	string numberText;
-	float key, find;
-
+	//Pesquisa
 	file.open("text_files/numbersForSearch_10000.txt");
 
 	if(file.is_open()){
@@ -46,12 +40,13 @@ void searchElements_umap(unordered_map <float, float> u_map){
 
 		while(!file.eof()){
 			getline(file, numberText);
-			key = stof(numberText);
+			key = numberText;
 
-			find = u_map[key];
-
-			if(find != 0){
-				cout << "u_map: " << find << endl;
+			if(u_map.find(key) == u_map.end()){
+				// cout << "";
+			}
+			else{
+				// cout << "umap: " << u_map[key] << endl;
 			}
 		}
 
