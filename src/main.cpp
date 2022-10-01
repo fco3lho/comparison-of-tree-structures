@@ -4,6 +4,7 @@ string selectTextFile();
 void execute_Binary_Tree(string f);
 void execute_AVL_Tree(string f);
 void execute_RB_Tree(string f);
+void execute_umap(string f);
 
 int main(){
 	string textFile = selectTextFile();
@@ -11,6 +12,7 @@ int main(){
 	execute_Binary_Tree(textFile);
 	execute_AVL_Tree(textFile);
 	execute_RB_Tree(textFile);
+	execute_umap(textFile);
 
 	return 0;
 }
@@ -74,4 +76,11 @@ void execute_RB_Tree(string f){
 	Tree_rb *raiz = CreateTree_rb();
 	Record_rb r;
 	insertElements_rb(&raiz, r, f);
+}
+
+void execute_umap(string f){
+	unordered_map <float, float> u_map;
+
+	insertElements_umap(u_map, f);
+	searchElements_umap(u_map);
 }

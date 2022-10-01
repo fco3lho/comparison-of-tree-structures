@@ -9,7 +9,8 @@ INCLUDE  := -Iinclude/
 SRC      :=  $(wildcard src/*.cpp)	\
 $(wildcard src/binary_tree/*.cpp)	\
 $(wildcard src/avl_tree/*.cpp)		\
-$(wildcard src/red_black_tree/*.cpp)
+$(wildcard src/red_black_tree/*.cpp) \
+$(wildcard src/unordered_map/*.cpp)
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
