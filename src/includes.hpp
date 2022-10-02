@@ -16,7 +16,7 @@
 #include "unordered_map/u_map.hpp"
 
 //Map
+#include "map/map.hpp"
 
-//Não funcionando direito
 //Binary Search
 #include "binary_search/binary_search.hpp"

@@ -11,6 +11,7 @@ $(wildcard src/binary_tree/*.cpp)	\
 $(wildcard src/avl_tree/*.cpp)		\
 $(wildcard src/red_black_tree/*.cpp) \
 $(wildcard src/unordered_map/*.cpp)	\
+$(wildcard src/map/*.cpp)	\
 $(wildcard src/binary_search/*.cpp)
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
