@@ -7,6 +7,7 @@
 #include "avl_tree/avl.hpp"
 #include "avl_tree/avl_functions.hpp"
 
+//Falta remoção
 //Red and Black Tree
 #include "red_black_tree/rb.hpp"
 #include "red_black_tree/rb_functions.hpp"
@@ -15,3 +16,7 @@
 #include "unordered_map/u_map.hpp"
 
 //Map
+
+//Não funcionando direito
+//Binary Search
+#include "binary_search/binary_search.hpp"
