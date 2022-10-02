@@ -1,5 +1,30 @@
 #include "binary_search.hpp"
 
+float binarySearch(vector <float> arr, int low, int high, float search){
+	while (low <= high) {
+        int mid = low + (high - low) / 2;
+ 
+        // Check if x is present at mid
+        if (arr[mid] == search){
+            return mid;
+        }
+ 
+        // If x greater, ignore left half
+        if (arr[mid] < search){
+            low = mid + 1;
+        }
+ 
+        // If x is smaller, ignore right half
+        else{
+            high = mid - 1;
+        }
+    }
+ 
+    // if we reach here, then element was
+    // not present
+    return -1;
+}
+
 void insertAndSearchElementsWithBinarySearch(string textFile){
 	clock_t start,end;
 
@@ -27,7 +52,7 @@ void insertAndSearchElementsWithBinarySearch(string textFile){
 		return;
 	}
 
-	//Ordenando
+	//Ordena
 	for(int i = 0; i < int(token.size()); i++){
 		for(int j = i; j < int(token.size()); j++){
 			if(token[i] > token[j]){
@@ -40,12 +65,11 @@ void insertAndSearchElementsWithBinarySearch(string textFile){
 	double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
     cout << endl << "Tempo de execução da inserção e ordenamento do vetor: " << fixed << time_taken << " segundos." << endl;
 
-	//Abrindo arquivo de elementos a serem pesquisados (DANDO ERRADO)
+    //A partir daqui faz a pesquisa com os 10000 elementos.
 	file.open("text_files/numbersForSearch_10000.txt");
 
-	int vetInicial, vetFinal, vetMeio;
-	bool dadoEncontrado;
 	float busca;
+	int n = int(token.size()) - 1, low = 0, result;
 
 	if(file.is_open()){
 		start = clock();
@@ -54,33 +78,12 @@ void insertAndSearchElementsWithBinarySearch(string textFile){
 			getline(file, numberText);
 			busca = stof(numberText);
 
-			vetInicial = 1;
-			vetFinal = int(token.size());
-			dadoEncontrado = false;
+			result = binarySearch(token, low, n, busca);
 
-			//Busca binária
-			while(vetInicial <= vetFinal || dadoEncontrado == false){
-				vetMeio = (vetInicial + vetFinal)/2;
-
-				if(token[vetMeio] == busca){
-					dadoEncontrado = true;
-				}
-
-				if(token[vetMeio] > busca){
-					vetFinal = vetMeio - 1;
-				}
-
-				else{
-					vetInicial = vetMeio + 1;
-				}
-			}
-
-			//Exibir resultados
-			if(dadoEncontrado == true){
-				// cout << "Dado encontrado na posição: " << vetMeio << "\t\tDado: " << token[vetMeio] << endl;	
+			if (result == -1){
 			}
 			else{
-				// cout << "Dado não encontrado." << endl;
+				// cout << "Element is present at index " << result << ": " << token[result] << endl;
 			}
 		}
 

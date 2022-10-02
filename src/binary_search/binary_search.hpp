@@ -7,6 +7,7 @@
 
 using namespace std;
 
+float binarySearch(vector <float> arr, int low, int high, float search);
 void insertAndSearchElementsWithBinarySearch(string textFile);
 
 #endif
