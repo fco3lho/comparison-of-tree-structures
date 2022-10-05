@@ -1,27 +1,28 @@
 #include "binary_search.hpp"
 
+void printArray(vector <float> arr, int n){
+    for (int i = 0; i < n; ++i){
+        cout << arr[i] << endl;
+    }
+}
+
 float binarySearch(vector <float> arr, int low, int high, float search){
 	while (low <= high) {
         int mid = low + (high - low) / 2;
  
-        // Check if x is present at mid
         if (arr[mid] == search){
             return mid;
         }
  
-        // If x greater, ignore left half
         if (arr[mid] < search){
             low = mid + 1;
         }
  
-        // If x is smaller, ignore right half
         else{
             high = mid - 1;
         }
     }
- 
-    // if we reach here, then element was
-    // not present
+
     return -1;
 }
 
@@ -52,14 +53,42 @@ void insertAndSearchElementsWithBinarySearch(string textFile){
 		return;
 	}
 
-	//Ordena
-	for(int i = 0; i < int(token.size()); i++){
-		for(int j = i; j < int(token.size()); j++){
-			if(token[i] > token[j]){
-				swap(token[i], token[j]);
+	////////////////// Ordenação do vetor
+
+	//Inicia Heap Sort
+	int left = 0;
+	int right = int(token.size());
+
+	while(right > 0){
+		right = right - 1;
+		
+		//Inicia Build Heap
+		left = right/2;
+		while(left > 0){
+			left = left - 1;
+
+			//Inicia Rebuild Heap
+			int i = left;
+			int child = (left > 0) ? (i*2):1;
+
+			if((child+1 < int(token.size())) && (token[child] < token[child+1])){
+				child += 1;
 			}
+
+			if(token[i] < token[child]){
+				swap(token[i], token[child]);
+			}
+			//Termina Rebuild Heap
 		}
+		//Termica Build Heap
+
+		swap(token[left], token[right]);
 	}
+	//Termina Heap Sort
+
+	// printArray(token, int(token.size())); 
+
+	////////////////// Fim da oredenação do vetor
 
 	end = clock();
 	double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
@@ -80,6 +109,7 @@ void insertAndSearchElementsWithBinarySearch(string textFile){
 
 			result = binarySearch(token, low, n, busca);
 
+			//Condição para, se <result> for diferente de -1, ou seja, se o elemento existir no vetor, imprimi-lo junto com seu index.
 			if (result == -1){
 			}
 			else{
