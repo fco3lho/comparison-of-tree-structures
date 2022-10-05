@@ -80,6 +80,7 @@ void execute_RB_Tree(string f){
 	Tree_rb *raiz = CreateTree_rb();
 	Record_rb r;
 	insertElements_rb(&raiz, r, f);
+	searchAndRemoveElements_rb(&raiz, r);
 }
 
 void execute_umap(string f){
