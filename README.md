@@ -16,14 +16,20 @@ Elaborar arquivos que contenham 500, 5000, 50.000, 500.000 entradas numéricas d
 ## Conteúdo do README
 
 <p align="center">
- <a href="#arquivos-usados">Arquivos usados</a> •
- <a href="#c%C3%B3digo">Código</a> •
- <a href="#observa%C3%A7%C3%B5es">Observações</a> •
- <a href="#funcionamento">Funcionamento</a> •
+ <a href="#estruturas">Estruturas</a> •
+ <a href="#funcionamento-da-aplicação">Funcionamento da aplicação</a> •
+ <a href="#resultados">Resultados</a> •
+ <a href="#conclusão">Conclusão</a> •
  <a href="#compila%C3%A7%C3%A3o-e-execu%C3%A7%C3%A3o">Compilação e execução</a>
-</p>
+</p> 
 
+## Estruturas
 
+## Funcionamento da aplicação
+
+## Resultados
+
+## Conclusão
 
 ## Compilação e Execução
 
