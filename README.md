@@ -212,8 +212,143 @@ Como pode ser observado, o tempo de execução depende muito da forma como o con
 encontrar um elemento é equivalente ao custo do método de pesquisa sequencial, ou seja, $$O(\frac{n+1}{2})$$
 
 
+### Árvore AVL
 
+As árvores binárias de pesquisa têm uma grave desvantagem que pode afetar seu desempenho. Essa desvantagem está ligada diretamente com o conjunto de dados, seu desempenho pode ser afetado pela forma com que o conjunto é apresentado para o método de inserção da árvore.
 
+Para resolver esse problema precisamos gerar o que chamamos de balanceamento da árvore. Exemplo:
+
+<p align="center">
+  <img align="center" src="imgs/balancedTreeExample.png">
+</p>
+
+Para evitar o problema descrito anteriormente aplicamos um novo conceito na estrutura da árvore binária, o balanceamento. 
+
+Uma generalização da árvore binária, no entanto, balanceada é a árvore AVL (Adelson Velsky e Landis). O objetivo da técnica proposta na AVL está em manter as subárvores esquerda e direita com altura aproximada. Este fato nos permite avaliar sua altura em <i>log n</i>. Para garantir o balanceamento, a AVL calcula o desequilíbrio a partir da profundidade (nível) do nó mais distante de cada subárvore. Caso esse se encontre com um índice de desbalanceamento maior ou igual a 2, a árvore é recomposta por rotações.
+
+As técnicas para balanceamento são as seguintes:
+
+<ul>
+  <li>Para todo nó, as alturas de suas subárvores (direira e esquerda) devem diferenciar no máximo em uma unidade de altura.</li>
+  <li>Garantindo o balanceamento, as consultas, inserções e remoções apresentarão custo em <i>O(log n)</i>.</li>
+</ul>
+
+<p align="center">
+  <img align="center" src="imgs/treeAVL.png">
+</p>
+
+Para se obter o balanceamento em uma AVL, o primeiro passo é calcular o fator de balanceamento para cada nó. Os passos para obter o fator de balanceamento são:
+
+<ol>
+  <li>Comece atribuindo zero para todo nó folha da árvore.</li>
+  <li>Suba um nível e some a subárvore a direita e subárvore esquerda.</li>
+  <li>Verifique se o resultado do calculo excede em uma unidade. Se exceder, a árvore estará desbalanceada e deve ser recomposta.</li>
+</ol>
+
+Por questões de eficiência, o valor obtido do balanceamento, para cada nível processado, é armazenado junto aos dados de cada nó, sendo esse atualizado a cada operação.
+
+Todo processo de remoção em uma árvore AVL gera como resultado uma árvore balanceada como retorno. Logo, é preciso verificar a cada remoção a necessidade de se executar tal procedimento.
+
+As operações de remoção e inserção podem causar desbalanceamento na estrutura da árvore. Logo, é preciso executar operações sob essa estrutura para balancear novamente o conjunto de dados.
+
+<ul>
+  <li>A recuperação do balanceamento é realizado por operações chamadas de rotações.</li>
+  <li>As rotações podem ser divididas em 4 configurações:
+    <ol>
+      <li>Rotação simples à esquerda.</li>
+      <li>Rotação simples à direita.</li>
+      <li>Rotação dupla à esquerda.</li>
+      <li>Rotação dupla à direira.</li>
+    </ol>
+  </li>
+</ul>
+
+Pseudocódigo da rotação simples à direita:
+
+```
+input : t → root of the Tree
+output: Balanced Tree
+aux = t.left;
+t.left = aux.right;
+aux.right = t;
+t.peso = MaxWeight(getWeight(t.left), getWeight(t.right)) + 1;
+aux.peso = MaxWeight(getWeight(aux.left), t.peso) + 1;
+t = aux;
+```
+
+Pseudocódigo da rotação simples à esquerda:
+
+```
+input : t → root of the Tree
+output: Balanced Tree
+aux = t.right;
+t.right = aux.left;
+aux.left = t;
+t.peso = MaxWeight(getWeight(raizˆ .esquerdo), getWeight(raizˆ .direito)) + 1;
+aux.peso := MaxWeight(getWeight(auxˆ .direito), raizˆ .peso) + 1;
+raiz = aux;
+```
+
+Pseudocódigo da rotação dupla esquerda/direita:
+
+```
+input : t → root of the Tree
+output: Balanced Tree
+rotacaoSimplesEsquerda(t.left);
+rotacaoSimplesDireita(t);
+```
+
+Pseudocódigo da rotação dupla direita/esquerda:
+
+```
+input : t → root of the Tree
+output: Balanced Tree
+rotacaoSimplesDireita(t.right);
+rotacaoSimplesEsquerda(t);
+```
+
+Pseudocódigo da inserção:
+
+```
+input : t → root of the tree
+input : item → new item
+output: Tree with the new item inserted
+
+if (t == NULL):
+  new(t);
+  t.item = item;
+  t.weight = 0;
+  t.left := NULL;
+  t.right = NULL;
+
+else if (item.key < t.item.key):
+  inserir(item, t.left);
+
+  if ((getWeight(t.left) - getWeight(t.right)) = 2):
+    if (item.key < t.left.item.key):
+      rotacaoSimplesDireita(t)
+    else
+      rotacaoDuplaEsquerdaDireita(t);
+else if (item.key > t.item.key):
+  inserir(item, t.right);
+
+  if ((getWeight(t.right) - getWeight(t.left)) = 2):
+    if (item.key > t.right.item.key):
+      rotacaoSimplesEsquerda(t)
+    else
+      rotacaoDuplaDireitaEsquerda(t);
+t.weight := MaxWeight(getWeight(t.left), getWeight(t.right)) + 1;
+```
+
+Concluindo, temos que:
+
+<ul>
+  <li>O balanceamento da árvore binária reduz o número médio de comparações necessárias para localizar qualquer elemento da árvore.</li>
+  <li>As operações de inserção e remoção tendem a deixar a árvore desbalanceada. Assim, tem-se um custo adicional nesses passos para validar sempre o balanceamento.
+</li>
+  <li>Essa estrutura é uma boa opção quando os dados armazenados são requisitados muitas vezes após sua inserção na árvore.
+</li>
+</ul>
 
 
 
