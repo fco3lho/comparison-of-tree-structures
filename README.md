@@ -212,6 +212,7 @@ Como pode ser observado, o tempo de execução depende muito da forma como o con
 encontrar um elemento é equivalente ao custo do método de pesquisa sequencial, ou seja, $$O(\frac{n+1}{2})$$
 
 
+
 ### Árvore AVL
 
 As árvores binárias de pesquisa têm uma grave desvantagem que pode afetar seu desempenho. Essa desvantagem está ligada diretamente com o conjunto de dados, seu desempenho pode ser afetado pela forma com que o conjunto é apresentado para o método de inserção da árvore.
@@ -350,6 +351,336 @@ Concluindo, temos que:
 </li>
 </ul>
 
+
+
+### Árvore rubronegra
+
+Essas árvores apresentam, dentre suas características positivas, o equilíbrio do custo relacionado a altura da árvore, apresentando custo em torno de <i>O(log n)</i> para a suas operações.
+
+Ao restringir suas inserções e remoções pela coloração de seus nós, a árvore rubronegra garante que nenhum de seus caminhos terá comprimento maior que duas vezes (2x) o comprimento de qualquer outro caminho existente na árvore. Este fator faz com que esse modelo de estrutura seja aproximadamente balanceada.
+
+As propriedades desta árvore são:
+
+<ol>
+  <li>Todo nó é vermelho ou preto.</li>
+  <li>A raiz é sempre preta, mesmo sendo o único nó.</li>
+  <li>Todo nó folha define seus filhos em nill como sendo pretos.</li>
+  <li>Se um nó é vermelho, então ambos os vizinhos são pretos.</li>
+  <li>Para todo nó, todos os caminhos até as folhas apresentam o mesmo número de nós pretos.</li>
+  <li>Para cada nova inserção, o nó criado começa com a cor vermelha.</li>
+</ol>
+
+Para representar a estrutura necessária para a manipulação dessa árvore vamos precisar das seguintes declarações:
+
+<ul>
+  <li>Uma variável para representar o conteúdo do nó.</li>
+  <li>Dois ponteiros, um para o filho esquerdo e outro para o direito.</li>
+  <li>Um bit para representar a cor (vermelho ou preto).</li>
+  <li>Um ponteiro para o pai. Isso facilita a manipulação da árvore e o balanceamento por meio das cores.</li>
+</ul>
+
+Pseudocódigo do conteúdo de cada nó:
+
+```
+Item:
+  conteudo : type;
+```
+
+Pseudocódigo do estrutura para cada nó:
+
+```
+Node:
+  reg : Item;
+  *esquerdo : Node;
+  *direito : Node;
+  *pai : Node;
+  cor : boolean;
+```
+
+A operação de inserção pode ser realizada em uma árvore vermelho e preta em tempo de O(log n). Os passos para executar essa operação são: 
+
+<ol>
+  <li>Faça uso do método de inserção da árvore binária para inserir um novo nó x na árvore t e deixe-o com a cor vermelha.</li>
+  <li>Para garantir que a árvore se encontra balanceada, o método de inserção é modificado para trabalhar com rotações e validação das colorações de cada nó.</li>
+</ol>
+
+Na inserção, a árvore vermelha e preta se diferencia da AVL no uso das técnicas de rotação. Nessa estrutura são necessárias somente as rotações simples a direita e a esquerda.
+
+O que ocorre com a árvore para manter seu balanceamento após uma inserção depende da cor dos nós de seus vizinhos. Para compreender seu balanceamento precisamos reavaliar suas propriedades:
+
+<ul>
+  <li>A primeira e a terceira propriedades são as mais tranquilas de se obter e de serem validadas.</li>
+  <li>A quinta propriedade que nos diz que o número de nós pretos deve ser o mesmo para todos os caminhos é assegurado pelo uso dos filhos dos nós folhas em preto (filhos em nill).</li>
+  <li>As propriedades que mais exigem do algoritmo são a segunda e a quarta. Essas precisam ser verificadas e avaliadas sob três casos distintos.</li>
+</ul>
+
+Para o balanceamento, temos 3 casos diferentes:
+
+<ol>
+  <li>
+<strong>Situação:</strong> A inserção de um nó vermelho deve GARANTIR que seu pai e tio sejam pretos.<br>
+<strong>Exemplo:</strong> Inserção do elemento 4 na árvore abaixo:
+      
+<p align="center">
+  <img align="center" src="Caso1RB.png">
+</p>
+
+<strong>Correção:</strong> Faça o pai e o tio se tornarem pretos, o novo item na recursão (i.e., pai do pai) se torna vermelho. Reorganize os ponteiros um nível acima.<br>
+<strong>Exemplo abaixo:</strong>
+    
+<p align="center">
+  <img align="center" src="Caso1RB2.png">
+</p> 
+
+Essa situação nos leva para o caso 2.
+  </li>
+  
+  <li>
+<strong>Situação:</strong> O tio de um item é preto, o item e seu pai são vermelhos e o item é o filho da direita.<br>
+
+<p align="center">
+  <img align="center" src="Caso2RB.png">
+</p> 
+
+<strong>Situação:</strong> O tio de um item é preto, o item e seu pai são vermelhos e o item é o filho da direita.<br>
+<strong>Correção:</strong> Rotação para a esquerda a partir da posição do pai e do item.<br>
+
+<p align="center">
+  <img align="center" src="Caso2RB2.png">
+</p> 
+
+Essa situação nos leva para o caso 3.
+  </li>
+  
+  <li>
+<strong>Situação:</strong> O tio do item é preto, o item e seu pai são vermelhos e o item é o filho da esquerda.<br>
+
+<p align="center">
+  <img align="center" src="Caso3RB.png">
+</p>
+
+<strong>Situação:</strong> : O tio do item é preto, o item e seu pai são vermelhos e o item é o filho da esquerda.<br>
+<strong>Correção:</strong> Modifique a cor do item do nível acima (11) e gere uma rotação a direita.<br>
+
+<p align="center">
+  <img align="center" src="Caso3RB2.png">
+</p>
+
+Observe que para atingir qualquer folha nessa estrutura, o número de nós pretos é o mesmo em todos os possíveis caminhos.
+  </li>
+</ol>
+
+Pseudocódigo do método de inserção da árvore rubronegra:
+
+```
+RB-Insert(raiz, item)
+begin
+  insert(raiz, item) ; // inserção da arvore binária comum
+  color[item] ←− RED;
+  
+  while item ̸= raiz and color[pai[item]] = RED do
+    if pai[item] = esquerdo[pai[pai[item]]] then
+      tio ←− direito[pai[pai[item]]];
+      if color[tio] = RED then
+        color[pai[item]] ←− BLACK ; // Caso 1
+        color[tio] ←− BLACK ; // Caso 1
+        color[pai[pai[item]]] ←− RED ; // Caso 1
+        item ←− pai[pai[item]] ; // Caso 1
+      
+      else if item = direito[pai[item]] then
+        item ←− pai[item] ; // Caso 2
+        rotacaoSimplesEsquerda(raiz, item) ; // Caso 2
+      color[pai[item]] ←− BLACK ; // Caso 3
+      color[pai[pai[item]]] ←− RED ; // Caso 3
+      rotacaoSimplesDireita(raiz, pai[pai[item]]) ; // Caso 3
+    
+    else
+      código igual ao do if, só trocar as chamadas esquerda por direita
+      
+  color[raiz] ←− BLACK
+```
+
+Como conclusão do pelo método de inserção, temos que:
+
+<ul>
+  <li>A altura <i>h</i> de uma árvore vermelho-preta de <i>n</i> chaves é de no máximo <i>2log(n + 1)</i>.</li>
+  <li>As buscas, inserções e remoções nessa estrutura apresentam caso médio de <i>O(log n)</i></li>
+  <li>Sua vantagem, em comparação com a AVL, está na necessidade de uso, somente, de rotações simples à esquerda e à direita. Como pode ser observado, quando as rotações são chamadas, a função é corrigir alguma quebra de propriedade relacionada às cores de cada nó.</li>
+</ul>
+
+Sobre o método de remoção da árvore rubronegra temos que:
+
+<ul>
+  <li>A eliminação, como as demais operações da RedBlack, tem custo computacional de <i>O(log n)</i></li>
+  <li>O algoritmo de remoção da árvore rubronegra é de forma análoga ao algoritmo de remoção de uma árvore binária padrão.</li>
+  <li>A correção é realizada por 4 casos e é executada ao final do processo de remoção do nó na árvore.</li>
+  <li>Diferente da inserção, observamos a cor do irmão do nó para decidir qual caso aplicar.</li>
+  <li>Na remoção, se a ausência de um nó produzir um par de nós pretos, ou seja, um duplo preto, ai sim teremos problemas.</li>
+</ul>
+
+O que é preciso observar em uma remoção para que a árvore rubronegra se mantenhaem conformidade com suas propriedades? Tabela abaixo:
+
+<table align="center">
+  <tr>
+    <td><strong>Caso</strong></td>
+    <td><strong>Nó a ser removido</strong></td>
+    <td><strong>Sucessor</strong></td>
+  </tr>
+  <tr>
+    <td><strong>*1</strong></td>
+    <td>Vermelho</td>
+    <td>Único filho</td>
+  </tr>
+  <tr>
+    <td><strong>2</strong></td>
+    <td>Vermelho</td>
+    <td>Vermelho</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td>Preto</td>
+    <td>Vermelho</td>
+  </tr>
+  <tr>
+    <td><strong>*4</strong></td>
+    <td>Preto</td>
+    <td>Preto</td>
+  </tr>
+  <tr>
+    <td><strong>5</strong></td>
+    <td>Vermelho</td>
+    <td>Preto</td>
+  </tr>
+</table>
+
+<strong>Caso 1:</strong> Caso básico, em que o nó é vermelho e só possui um dos filhos.<br>
+<strong>Caso 4:</strong>  Caso mais complicado, esse demanda correção da mesma forma que o aplicado no método de inserção, porém, utilizando 4 casos de aplicação/validação.
+
+Como os casos funcionam:
+
+<ol>
+  <li>
+O nó a ser removido é vermelho e possui apenas um único filho ounão possui filhos.<br>
+<strong>Correção:</strong> Remoção análoga ao de uma árvore binária comum.
+    
+<p align="center">
+  <img align="center" src="RemoveRBCaso1.png">
+</p> 
+  </li>
+  
+  <li>
+O nó a ser removido é vermelho e seu sucessor também é vermelho.<br>  
+<strong>Correção:</strong> Remoção análoga ao de uma árvore binária comum.
+
+<p align="center">
+  <img align="center" src="RemoveRBCaso2.png">
+</p> 
+  </li>
+  
+  <li>
+O nó a ser removido é preto e seu sucessor é vermelho.<br>  
+<strong>Correção:</strong> Remova o nó, substitua pelo sucessor e pinte o sucessor de preto.
+
+<p align="center">
+  <img align="center" src="RemoveRBCaso3.png">
+</p> 
+  </li>
+  
+  <li>
+O problema do duplo preto ocorre quando retiramos um nó preto. Como a árvore se baseia no número de pretos para validar suas propriedades, ela acaba tendo que compensar isso na remoção. Existem 4 casos a tratar quando o sucessor a ser removido é preto.
+
+Para compreender o caso 4, considere a seguinte nomenclatura: <strong>z:</strong> o nó a ser removido; <strong>y:</strong> o sucessor de z; <strong>x:</strong> o filho do sucessor antes de qualquer modificação; <strong>w:</strong>  o irmão de x antes da remoção de z.
+
+<ol>
+  <li>
+O irmão <i>w</i> de <i>x</i> é vermelho. Como <i>w</i> é vermelho, ambos os filhos são pretos, logo, deve-se trocar as cores de <i>w</i> e <i>x.pai</i> e realizar a rotação à esquerda tendo como ponto de observação <i>x.pai</i>.
+
+Essas alterações não violam nenhuma propriedade da árvore. Contudo,
+leva o Caso 4.1 para os demais casos citados.
+  </li>
+  
+  <li>
+O irmão <i>w</i> de <i>x</i> é preto e ambos os filhos de <i>w</i> são pretos, logo, deve-se atualizar <i>w</i> para vermelho, atualizar <i>x</i> levando-o para o seu pai e repetir o processo a partir do novo <i>x</i>. 
+  </li>
+  
+  <li>
+O irmão <i>w</i> de <i>x</i> é preto, o filho esquerdo de <i>w</i> é vermelho e o filho da direita é preto, logo, deve-se trocar a cor de <i>w</i> e de seu filho esquerdo, rotacionar a árvore para a direita usando como pivô <i>w</i>. Neste ponto, o novo irmão <i>w</i> de <i>x</i> é preto com o filho da direita na cor vermelha, o que nos leva ao próximo caso.
+  </li>
+  
+  <li>
+O irmão <i>w</i> de <i>x</i> é preto e o filho direito de <i>w</i> é vermelho, logo, deve-se rotacionar a árvore para a esquerda usando como pivô <i>x.pai</i>, <i>w</i> é pintado com a cor de <i>x.pai</i>, <i>x.pai</i> é pintado de preto e pinta o filgo direito de <i>w</i> de preto.
+  </li> 
+</ol>
+  </li>
+  
+  <li>
+O nó a ser removido é vermelho e x, irmão de sucessão, é preto, logo, deve-se pintar o <i>x</i> de vermelho e resolver os problemas pelos casos particulares do caso 4.
+  </li> 
+</ol>
+
+Pseudocódigo do método de remoção:
+
+```
+RB-TRANSPLANT(T,u,v){
+  if u.p == T.nil
+    T.root = v
+  else if u == u.p.left
+    u.p.left = v
+  else u.p.right == v
+    v.p = u.p
+}
+
+RB-DELETE-FIXUP(T,x){
+  while x!= T.root and x.color == BLACK
+    if x == x.p.left
+      w = x.p.right
+      if w.color == RED
+        w.color = BLACK
+        x.p.color = RED
+        LEFT-ROTATE(T,x,p)
+        w = x.p.right
+      if w.left.color == BLACK and w.right.color == BLACK
+        w.color = RED
+        x = x.p
+      else if w.right.color == BLACK
+        w.left.color = BLACK
+        w.color = RED
+        RIGHT-ROTATE(T,w)
+        w = x.p.right
+      w.color = x.p.color
+      x.p.color = BLACK
+      w.right.color = BLACK
+      LEFT-ROTATE(T,x,p)
+      x = T.root
+    else(same as then clause with "right" and "left" exchanged)
+  x.color = BLACK
+}
+
+RB-DELETE(T,z){
+  y = z
+  y-original-color = y.color
+  if z.left == T.nil
+    x = z.right
+    RB-TRANSPLANT(T,z,z.right)
+  else if z.right == T.nil
+    x = z.left
+    RB-TRANSPLANT(T,z,z.left)
+  else y = TREE-MINIMUM(z.right)
+    y-original-color = y.color
+    x = y.right
+    if y.p == z
+      x.p = y
+    else RB-TRANSPLANT(T,y,y.right)
+      y.right = z.right
+      y.right.p = y
+    RB-TRANSPLANT(T,z,y)
+    y.left = z.left
+    y.left.p = y
+    y.color = z.color
+  if y-original-color == BLACK
+    RB-DELETE-FIXUP(T,x)
+}
+```
 
 
 
