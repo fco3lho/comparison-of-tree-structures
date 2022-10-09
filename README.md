@@ -20,7 +20,8 @@ Elaborar arquivos que contenham 500, 5000, 50.000, 500.000 entradas numéricas d
  <a href="#funcionamento-da-aplicação">Funcionamento da aplicação</a> •
  <a href="#resultados">Resultados</a> •
  <a href="#conclusão">Conclusão</a> •
- <a href="#compila%C3%A7%C3%A3o-e-execu%C3%A7%C3%A3o">Compilação e execução</a>
+ <a href="#compila%C3%A7%C3%A3o-e-execu%C3%A7%C3%A3o">Compilação e execução</a> •
+ <a href="#contatos">Contatos</a>
 </p> 
 
 ## Estruturas
