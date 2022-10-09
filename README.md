@@ -804,7 +804,97 @@ O usuário irá selecionar a opção que deseja, o programa irá executar as est
 
 ## Resultados
 
+Para a obtenção dos resultados, foram feitos cinco testes para todas as estruturas, que foram salvas no arquivo <code>.xlsx</code>. Para acessar, clique <a href="https://github.com/fco3lho/comparison-of-tree-structures/blob/main/times_table.xlsx">aqui</a>.
+
+A média dos tempos de execução foram as seguintes:
+
+<ul>
+<li>
+Para 500000 inserções: 
+	
+![image](https://user-images.githubusercontent.com/77592669/194773245-00e6cb93-4b0a-4ff0-bd18-8924259cfe6d.png)
+</li>
+	
+<li>
+Para 50000 inserções:
+
+![image](https://user-images.githubusercontent.com/77592669/194773267-a4e3bf69-8705-4aad-af34-b2bd38647b91.png)
+</li>
+
+<li>
+Para 5000 inserções:
+
+![image](https://user-images.githubusercontent.com/77592669/194773269-919919ba-ac9e-444b-a503-f80aa4bd2bfc.png)
+</li>
+		
+<li>
+Para 500 inserções:
+
+![image](https://user-images.githubusercontent.com/77592669/194773274-8f141717-e87e-495a-9199-66b5e35fefe4.png)	
+</li>
+		
+<li>
+Para a inserção de 5000 elementos ordenados:
+
+![image](https://user-images.githubusercontent.com/77592669/194773279-b1cee212-5f9a-4b59-a2db-3b293546c485.png)
+</li>
+</ul>
+
+Ignorando os valores obtidos com a pesquisa binária, por ser muito discrepante e adotando-o apenas na lista ordenada por ficar muito parecido com a árvore de pesquisa binária, temos os seguintes gráficos (todos os gráficos tratam o tempo em segundos):
+
+<ul>
+<li>Para arquivo de texto com 500000 elementos:
+
+![image](https://user-images.githubusercontent.com/77592669/194774174-fc9a689e-bac5-41ed-944e-a10947e4805d.png)
+
+![image](https://user-images.githubusercontent.com/77592669/194774185-94246318-6722-4d3a-8a12-f403435838ae.png)
+
+</li>
+
+<li>Para arquivo de texto com 50000 elementos:
+
+![image](https://user-images.githubusercontent.com/77592669/194774309-e21f125b-5874-4b26-b691-b683dfd8f60e.png)
+
+![image](https://user-images.githubusercontent.com/77592669/194774313-8d6dc697-81fe-4298-95fa-6f04c0bcfb50.png)
+
+</li>
+
+<li>Para arquivo de texto com 5000 elementos:
+
+![image](https://user-images.githubusercontent.com/77592669/194774316-ee4a25a7-4e84-4eb9-a724-a18ca6d0d41a.png)
+
+![image](https://user-images.githubusercontent.com/77592669/194774320-fe5f8c60-a969-452f-b1ff-d23e3d3074ac.png)
+
+</li>
+
+<li>Para arquivo de texto com 500 elementos:
+
+![image](https://user-images.githubusercontent.com/77592669/194774325-4f63447a-2fbe-4d04-80dd-bdcfdc60441c.png)
+
+![image](https://user-images.githubusercontent.com/77592669/194774326-d88b02ee-c2ab-4454-a995-998f6efadbf9.png)
+
+</li>
+
+<li>Para arquivo de texto com 5000 elementos ordenados:
+
+![image](https://user-images.githubusercontent.com/77592669/194774337-e39f2774-0a6c-4719-8eb7-228ea3cfff8d.png)
+
+![image](https://user-images.githubusercontent.com/77592669/194774345-b82b9bb8-335f-4c37-a62d-7b5db43c5c02.png)
+
+</li>
+</ul>
+
 ## Conclusão
+
+Sendo assim, a partir dos valores extraídos e dos gráficos feitos, é de melhor visualização o poder das estruturas de dados usadas. Podemos ver que para valores aleatórios e para grandes entradas de dados, as estruturas de árvore tem muita diferença entra si, mas mesmo com pouca diferença, a árvore rubronegra leva vantagem sobre a árvore AVL e árvore de busca binária na inserção.
+
+Na remoção, as árvores ficaram bem equiparadas e quem levou vantagem sobre as outras estruturas foi o <code>unordered_map</code>, se tratando também de uma árvore rubronegra, que, pelo que parece é melhor otimizada do que a estrutura criada no repositório.
+
+O <code>map</code>, se tratando de uma tabela hash, também se comportou bem, ficando atrás das estruturas de árvore, mas mesmo assim, se equiparando minimamente em inserção e remoção.
+
+A <strong>pesquisa binária</strong> perdeu em todos os quesitos com muita discrepância por ser muito caro para grandes entradas de dados.
+
+Com os resultados iniciais, pareceu um pouco entranho a árvore binária de pesquisa estar se equiparando à AVL e rubronegra, então foi criada um arquivo de texto com 5000 elementos ordenados para ser feita a inserção, e neste ponto foi possível observar o custo real das estruturas de árvore, onde o pior caso das árvores <strong>binária</strong>, <strong>AVL</strong> e <strong>rubronegra</strong> são, respectivamente, <i>O(n)</i>, <i>O(log n)</i> e <i>O(log n)</i>, fazendo com que a árvore binária tenha se equiparado com a pesquisa binária no método de inserção e tenha perdido com muita discrepância até para a pesquisa binária no método de remoção, se mostrando uma péssima escolha para tratamento de grandes entradas de dados.
 
 ## Compilação e Execução
 
