@@ -41,7 +41,9 @@ A árvore binária de pesquisa é uma estrutura muito eficiente para armazenar i
 
 A estrutura básica da árvore de pesquisa binária é formada por uma raiz R com seus filhos esquerdo e direito, onde todos os elementos menores ficam na subárvore esquerda e todos os elementos maiores ficam na subárvore direita. Exemplo:
 
-<img src="imgs/binaryTree" align="center">
+<p align="center">
+  <img align="center" src="imgs/binaryTree.png">
+</p>
 
 A árvore binária de pesquisa possue as seguintes características para sua implementação:
 
