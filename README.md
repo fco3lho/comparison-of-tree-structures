@@ -422,14 +422,14 @@ Para o balanceamento, temos 3 casos diferentes:
 <strong>Exemplo:</strong> Inserção do elemento 4 na árvore abaixo:
       
 <p align="center">
-  <img align="center" src="Caso1RB.png">
+  <img align="center" src="imgs/Caso1RB.png">
 </p>
 
 <strong>Correção:</strong> Faça o pai e o tio se tornarem pretos, o novo item na recursão (i.e., pai do pai) se torna vermelho. Reorganize os ponteiros um nível acima.<br>
 <strong>Exemplo abaixo:</strong>
     
 <p align="center">
-  <img align="center" src="Caso1RB2.png">
+  <img align="center" src="imgs/Caso1RB2.png">
 </p> 
 
 Essa situação nos leva para o caso 2.
@@ -439,14 +439,14 @@ Essa situação nos leva para o caso 2.
 <strong>Situação:</strong> O tio de um item é preto, o item e seu pai são vermelhos e o item é o filho da direita.<br>
 
 <p align="center">
-  <img align="center" src="Caso2RB.png">
+  <img align="center" src="imgs/Caso2RB.png">
 </p> 
 
 <strong>Situação:</strong> O tio de um item é preto, o item e seu pai são vermelhos e o item é o filho da direita.<br>
 <strong>Correção:</strong> Rotação para a esquerda a partir da posição do pai e do item.<br>
 
 <p align="center">
-  <img align="center" src="Caso2RB2.png">
+  <img align="center" src="imgs/Caso2RB2.png">
 </p> 
 
 Essa situação nos leva para o caso 3.
@@ -456,14 +456,14 @@ Essa situação nos leva para o caso 3.
 <strong>Situação:</strong> O tio do item é preto, o item e seu pai são vermelhos e o item é o filho da esquerda.<br>
 
 <p align="center">
-  <img align="center" src="Caso3RB.png">
+  <img align="center" src="imgs/Caso3RB.png">
 </p>
 
 <strong>Situação:</strong> : O tio do item é preto, o item e seu pai são vermelhos e o item é o filho da esquerda.<br>
 <strong>Correção:</strong> Modifique a cor do item do nível acima (11) e gere uma rotação a direita.<br>
 
 <p align="center">
-  <img align="center" src="Caso3RB2.png">
+  <img align="center" src="imgs/Caso3RB2.png">
 </p>
 
 Observe que para atingir qualquer folha nessa estrutura, o número de nós pretos é o mesmo em todos os possíveis caminhos.
@@ -564,7 +564,7 @@ O nó a ser removido é vermelho e possui apenas um único filho ounão possui f
 <strong>Correção:</strong> Remoção análoga ao de uma árvore binária comum.
     
 <p align="center">
-  <img align="center" src="RemoveRBCaso1.png">
+  <img align="center" src="imgs/RemoveRBCaso1.png">
 </p> 
   </li>
   
@@ -573,7 +573,7 @@ O nó a ser removido é vermelho e seu sucessor também é vermelho.<br>
 <strong>Correção:</strong> Remoção análoga ao de uma árvore binária comum.
 
 <p align="center">
-  <img align="center" src="RemoveRBCaso2.png">
+  <img align="center" src="imgs/RemoveRBCaso2.png">
 </p> 
   </li>
   
@@ -582,7 +582,7 @@ O nó a ser removido é preto e seu sucessor é vermelho.<br>
 <strong>Correção:</strong> Remova o nó, substitua pelo sucessor e pinte o sucessor de preto.
 
 <p align="center">
-  <img align="center" src="RemoveRBCaso3.png">
+  <img align="center" src="imgs/RemoveRBCaso3.png">
 </p> 
   </li>
   
