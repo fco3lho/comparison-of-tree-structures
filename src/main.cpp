@@ -26,13 +26,15 @@ string selectTextFile(){
 	string file2 = "text_files/randomNumbers_5000.txt";
 	string file3 = "text_files/randomNumbers_50000.txt";
 	string file4 = "text_files/randomNumbers_500000.txt";
+	string file5 = "text_files/orderedList_5000.txt";
 
 	int option = -1, cancel = -1;
 
 	cout << endl << "Para selecionar o arquivo com 500 números aleatórios, digite 1." << endl;
 	cout << "Para selecionar o arquivo com 5000 números aleatórios, digite 2." << endl;
 	cout << "Para selecionar o arquivo com 50000 números aleatórios, digite 3." << endl;
-	cout << "Para selecionar o arquivo com 500000 números aleatórios, digite 4." << endl << endl;
+	cout << "Para selecionar o arquivo com 500000 números aleatórios, digite 4." << endl;
+	cout << "Para selecionar o arquivo com 5000 números ordenados, digite 5." << endl << endl;
 
 	while(cancel != 0){
 		cout << "Opção: ";
@@ -53,6 +55,10 @@ string selectTextFile(){
 		else if(option == 4){
 			cancel = 0;
 			return file4;
+		}
+		else if(option == 5){
+			cancel = 0;
+			return file5;
 		}
 		else{
 			cout << "Opção inválida, digite novamente." << endl;
