@@ -914,7 +914,7 @@ Com os resultados iniciais, pareceu um pouco entranho a árvore binária de pesq
 	</tr>
 	<tr>
 		<td><strong>Sistema Operacional</strong></td>
-		<td>Linux Ubuntu 22.04.1</td>
+		<td>WSL2 com Linux Ubuntu 22.04.1</td>
 	</tr>
 </table>
 
