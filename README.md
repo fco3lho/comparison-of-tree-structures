@@ -23,6 +23,7 @@ Elaborar arquivos que contenham 500, 5000, 50.000, 500.000 entradas numéricas d
  <a href="#funcionamento-da-aplicação">Funcionamento da aplicação</a> •
  <a href="#resultados">Resultados</a> •
  <a href="#conclusão">Conclusão</a> •
+ <a href="#configuração-utilizada">Configuração utilizada</a> •
  <a href="#compila%C3%A7%C3%A3o-e-execu%C3%A7%C3%A3o">Compilação e execução</a> •
  <a href="#contatos">Contatos</a>
 </p> 
@@ -895,6 +896,27 @@ O <code>map</code>, se tratando de uma tabela hash, também se comportou bem, fi
 A <strong>pesquisa binária</strong> perdeu em todos os quesitos com muita discrepância por ser muito caro para grandes entradas de dados.
 
 Com os resultados iniciais, pareceu um pouco entranho a árvore binária de pesquisa estar se equiparando à AVL e rubronegra, então foi criada um arquivo de texto com 5000 elementos ordenados para ser feita a inserção, e neste ponto foi possível observar o custo real das estruturas de árvore, onde o pior caso das árvores <strong>binária</strong>, <strong>AVL</strong> e <strong>rubronegra</strong> são, respectivamente, <i>O(n)</i>, <i>O(log n)</i> e <i>O(log n)</i>, fazendo com que a árvore binária tenha se equiparado com a pesquisa binária no método de inserção e tenha perdido com muita discrepância até para a pesquisa binária no método de remoção, se mostrando uma péssima escolha para tratamento de grandes entradas de dados.
+
+## Configuração utilizada
+
+<table align="center">
+	<tr>
+		<td><strong>Processador</strong></td>
+		<td>AMD Ryzen 7 5700U - Octa-core - 4.3GHz</td>
+	</tr>
+	<tr>
+		<td><strong>Memória RAM</strong></td>
+		<td>(4GB + 16GB) - 3200MHz</td>
+	</tr>
+	<tr>
+		<td><strong>GPU</strong></td>
+		<td>AMD Radeon Graphics - 2GB - 1.9GHz</td>
+	</tr>
+	<tr>
+		<td><strong>Sistema Operacional</strong></td>
+		<td>Linux Ubuntu 22.04.1</td>
+	</tr>
+</table>
 
 ## Compilação e Execução
 
