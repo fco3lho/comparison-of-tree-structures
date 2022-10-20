@@ -887,7 +887,7 @@ Ignorando os valores obtidos com a pesquisa binária, por ser muito discrepante 
 
 ## Conclusão
 
-Sendo assim, a partir dos valores extraídos e dos gráficos feitos, é de melhor visualização o poder das estruturas de dados usadas. Podemos ver que para valores aleatórios e para grandes entradas de dados, as estruturas de árvore tem muita diferença entra si, mas mesmo com pouca diferença, a árvore rubronegra leva vantagem sobre a árvore AVL e árvore de busca binária na inserção.
+Sendo assim, a partir dos valores extraídos e dos gráficos feitos, é de melhor visualização o poder das estruturas de dados usadas. Podemos ver que para valores aleatórios e para grandes entradas de dados, as estruturas de árvore tem pouca diferença entra si, mas mesmo com pouca diferença, a árvore rubronegra leva vantagem sobre a árvore AVL e árvore de busca binária na inserção, que tem custo de aproximadamente 1.39log(n) para uma inserção totalmente aleatória.
 
 Na remoção, as árvores ficaram bem equiparadas e quem levou vantagem sobre as outras estruturas foi o <code>unordered_map</code>, se tratando também de uma árvore rubronegra, que, pelo que parece é melhor otimizada do que a estrutura criada no repositório.
 
